@@ -7,6 +7,7 @@ use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -87,5 +88,14 @@ class HomeController extends Controller
 //        // attacher l'etudiant aux classes 1 et 2 pour les annees 2023 et 2024
 
         return view('home');
+    }
+
+    public function homeVuejs()
+    {
+        return Inertia::render('Home',
+            [
+                'welcome' => 'Welcome to the Home Page using VueJs',
+            ]
+        );
     }
 }

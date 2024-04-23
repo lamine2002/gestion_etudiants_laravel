@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'homeVuejs'])
     ->name('home');
 
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])

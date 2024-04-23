@@ -4,6 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "sweetalert2";
 import "sweetalert2/dist/sweetalert2.all.js";
 import Swal from "sweetalert2";
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
+
+createInertiaApp({
+    resolve: name => {
+        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+        return pages[`./Pages/${name}.vue`]
+    },
+    setup({ el, App, props, plugin }) {
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .mount(el)
+    },
+})
 
 const deleteForms = document.querySelectorAll('.deleteForm');
 
