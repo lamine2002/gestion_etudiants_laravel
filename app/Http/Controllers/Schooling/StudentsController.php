@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 //use Maatwebsite\Excel\Excel;
+use Inertia\Inertia;
 use Maatwebsite\Excel\Facades\Excel;    // This is the correct way to import the Excel facade
 
 
@@ -43,7 +44,7 @@ class StudentsController extends Controller
 
         $query = Student::query()->orderBy('created_at', 'desc');
 //        return $query->get();
-        if($firstname = $request->validated('firstname')){
+       /* if($firstname = $request->validated('firstname')){
             $query = $query->where('firstname', 'like', "%{$firstname}%");
         }
 
@@ -52,6 +53,13 @@ class StudentsController extends Controller
             [
                 'students' => $query->paginate(10),
                 'input' => $request->validated()
+            ]
+        );*/
+
+        // Utilisation de Inertia et Vue.js
+        return Inertia::render('Students/StudentsIndex',
+            [
+                'students' => $query->paginate(10)
             ]
         );
     }

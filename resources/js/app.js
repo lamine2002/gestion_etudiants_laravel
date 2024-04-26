@@ -6,6 +6,8 @@ import "sweetalert2/dist/sweetalert2.all.js";
 import Swal from "sweetalert2";
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import 'flowbite';
+
 
 createInertiaApp({
     resolve: name => {
