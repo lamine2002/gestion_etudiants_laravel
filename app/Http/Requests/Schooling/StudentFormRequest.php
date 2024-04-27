@@ -28,7 +28,7 @@ class StudentFormRequest extends FormRequest
             'phone' => 'required|string',
             'email' => 'required|email',
             'birthplace' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+//            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'classes' => 'required|exists:classes,id',
             'schoolingYear' => 'required|string|max:12',
             // exists:classes,id signifie que la valeur doit exister dans la table classes et dans la colonne id

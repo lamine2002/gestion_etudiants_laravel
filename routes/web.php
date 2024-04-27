@@ -34,6 +34,8 @@ Route::prefix('schooling')->name('schooling.')->middleware('auth')->group(functi
 
 });
 
+
+
 Route::post('/import-students', [\App\Http\Controllers\Schooling\StudentsController::class, 'import'])
     ->name('import-students')
     ->middleware('auth');

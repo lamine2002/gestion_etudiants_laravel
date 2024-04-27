@@ -59,7 +59,8 @@ class StudentsController extends Controller
         // Utilisation de Inertia et Vue.js
         return Inertia::render('Students/StudentsIndex',
             [
-                'students' => $query->paginate(10)
+                'students' => $query->paginate(10),
+                'classes' => SchoolClass::pluck('className', 'id'),
             ]
         );
     }
@@ -70,11 +71,20 @@ class StudentsController extends Controller
     public function create()
     {
         $student = new Student();
-        return view('schooling.students.form', [
+        /*return view('schooling.students.form', [
             'student' => $student,
             'classes' => SchoolClass::pluck('className', 'id'),
             // pluck permet de recuperer les valeurs d'une colonne d'une table
-        ]);
+        ]);*/
+
+        // Utilisation de Inertia et Vue.js
+        return Inertia::render('Students/CreateStudent',
+            [
+                'classes' => SchoolClass::pluck('className', 'id'),
+                'student' => $student,
+//                'store_url' => route('schooling.students.store'),
+            ]
+        );
     }
 
     /**
@@ -82,8 +92,8 @@ class StudentsController extends Controller
      */
     public function store(StudentFormRequest $request)
     {
-        $data = $this->extractData(new Student(), $request);
-        $student = Student::create($data);
+//        dd($request->all());
+        $student = Student::create($request->validated());
         $student->schoolClasses()->attach($request->classes, ['schoolingYear' => $request->schoolingYear]);
 //        $student = Student::create($this->extractData(new Student(), $request));
 //        dd($student);
@@ -98,7 +108,10 @@ class StudentsController extends Controller
                 'password' => Hash::make('passer')
             ]
         );
-        return redirect()->route('schooling.students.index')->with('success', 'Etudiant créé avec succès');
+//        return redirect()->route('schooling.students.index')->with('success', 'Etudiant créé avec succès');
+
+        // Utilisation de Inertia et Vue.js
+        return redirect()->route('schooling.students.index');
     }
 
     /**
@@ -116,10 +129,18 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('schooling.students.form', [
+        /*return view('schooling.students.form', [
             'student' => $student,
             'classes' => $student->classes()->pluck('className', 'id'),
-        ]);
+        ]);*/
+
+        // Utilisation de Inertia et Vue.js
+        return Inertia::render('Students/CreateStudent',
+            [
+                'student' => $student,
+                'classes' => SchoolClass::pluck('className', 'id')
+            ]
+        );
     }
 
     /**

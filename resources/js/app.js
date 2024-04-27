@@ -1,6 +1,6 @@
 //app.js
-import './bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import './bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import "sweetalert2";
 import "sweetalert2/dist/sweetalert2.all.js";
 import Swal from "sweetalert2";

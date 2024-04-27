@@ -3,13 +3,14 @@ import { initFlowbite } from 'flowbite'
 import Navbar from "@/Pages/Components/Navbar.vue";
 import {onMounted} from "vue";
 import { Link } from "@inertiajs/vue3";
+import CreateStudent from "@/Pages/Students/CreateStudent.vue";
 
 // initialize components based on data attribute selectors
 onMounted(() => {
     initFlowbite();
 })
 
-    const props = defineProps(['students']);
+    const props = defineProps(['students', 'classes']);
     /*const deleteStudent = (studentId) => {
         if (confirm('Are you sure you want to delete this student?')) {
             axios.delete(route('students.destroy', studentId))
@@ -20,7 +21,8 @@ onMounted(() => {
         }
     }*/
 
-    console.log(props.students.data[0].firstname);
+    // console.log(props.students.data[0].firstname);
+// console.log(props.classes);
 </script>
 
 <template>
@@ -32,7 +34,8 @@ onMounted(() => {
         <div>
             <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Liste des étudiants</h1>
             <div class="mt-4">
-                <a href="/schooling/students/create" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Ajouter un étudiant</a>
+<!--                <Link href="/schooling/students/create" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Ajouter un étudiant</Link>-->
+                <CreateStudent :classes='props.classes' />
             </div>
     <!--        <StudentsTable :props="props" />-->
         </div>
